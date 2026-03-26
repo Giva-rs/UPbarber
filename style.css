@@ -1,0 +1,641 @@
+/* --- CONFIGURAÇÕES GERAIS --- */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
+:root {
+    --primary-color: #d4af37;
+    --bg-color: #121212;
+    --text-color: #f4f4f4;
+    --card-bg: #1e1e1e;
+    --whatsapp-color: #25D366;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- CABEÇALHO (HEADER) --- */
+header {
+    background-color: #000;
+    padding: 0.5rem 0;
+    position: fixed; 
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #222;
+    display: flex; 
+    align-items: center;
+    min-height: 80px;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* LOGO NO TOPO */
+.logo {
+    display: flex;
+    align-items: center; 
+    gap: 12px; 
+    text-decoration: none;
+}
+
+.logo-img {
+    height: 50px; 
+    width: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.logo-text {
+    color: var(--text-color);
+    font-size: 1.4rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1;
+}
+
+.logo-text .highlight {
+    color: var(--primary-color);
+    font-weight: 900;
+}
+
+.logo:hover .logo-img { transform: scale(1.05); }
+.logo:hover .logo-text { color: var(--primary-color); transition: color 0.3s ease; }
+.logo:hover .highlight { text-shadow: 0 0 8px rgba(212, 175, 55, 0.4); }
+
+/* NAVEGAÇÃO */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+}
+
+nav a:hover { color: var(--primary-color); }
+
+/* --- ESTRUTURA DE SEÇÃO --- */
+section {
+    padding: 100px 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+section h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 3rem;
+}
+/* --- HERO SECTION --- */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column; /* EMPILHA OS ITENS UM EMBAIXO DO OUTRO */
+    align-items: center;    /* CENTRALIZA NA HORIZONTAL */
+    justify-content: center;/* CENTRALIZA NA VERTICAL */
+    text-align: center;
+    background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), 
+                url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&q=80') center/cover;
+    position: relative;
+    padding: 0;
+}
+
+.hero h2 {
+    font-size: 3.5rem;
+    color: #ffffff; 
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: #ffffff;
+    max-width: 600px;
+    margin: 0 auto 2.5rem auto; /* O '0 auto' garante que a caixa de texto fique no meio */
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+}
+/* --- SERVIÇOS --- */
+/* --- ESTILO PADRONIZADO DOS CARDS DE SERVIÇO --- */
+.services-grid {
+    display: grid;
+    /* Configuração para 4 cards por linha no desktop */
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 30px;
+    width: 100%;
+}
+
+.service-card {
+    background: var(--card-bg);
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    border-bottom: 4px solid #222; /* Borda inicial discreta */
+    transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza o ícone e o texto dentro do card */
+    gap: 15px; /* Espaço uniforme entre ícone, título e descrição */
+}
+
+/* NOVO: Estilização Centralizada e Padronizada para TODOS os Ícones do FontAwesome */
+.service-card .fas, 
+.service-card .fab, 
+.service-card .far {
+    font-size: 2.2rem; /* Tamanho uniforme para todos (aumentei um pouco para presença) */
+    color: var(--primary-color); /* TODOS os ícones ficam DOURADOS */
+    margin-bottom: 5px; /* Espaçamento sutil para o título */
+    transition: transform 0.3s ease;
+}
+
+/* Efeitos de Hover Padronizados */
+.service-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary-color); /* A borda inferior acende em dourado */
+    background: #252525; /* Leve destaque no fundo */
+}
+
+.service-card:hover i {
+    transform: scale(1.1); /* O ícone dá um leve "pulo" no hover do card */
+}
+
+/* --- RESPONSIVIDADE DO GRID MANTIDA --- */
+@media (max-width: 1024px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+    .services-grid { grid-template-columns: 1fr; }
+}
+
+/* --- GALERIA PREMIUM --- */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+.gallery-item {
+    position: relative;
+    height: 350px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid #222; 
+    background-color: #000; 
+    cursor: pointer;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    object-position: center 20%; 
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); 
+}
+
+.gallery-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(45deg, rgba(0,0,0,0) 60%, rgba(0,0,0,0.85) 100%);
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 20px 25px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.gallery-overlay span {
+    color: var(--primary-color);
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transform: translateY(10px);
+    transition: transform 0.4s ease;
+}
+
+.gallery-item:hover { border-color: var(--primary-color); box-shadow: 0 10px 25px rgba(212,175,55,0.2); }
+.gallery-item:hover img { transform: scale(1.05); }
+.gallery-item:hover .gallery-overlay { opacity: 1; }
+.gallery-item:hover .gallery-overlay span { transform: translateY(0); }
+
+/* --- SOBRE --- */
+.about { background-color: #161616; }
+.about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.about-text { text-align: left; }
+.about-text h2 { text-align: left; margin-bottom: 1.5rem; }
+.about-text p { color: #ccc; font-size: 1.1rem; margin-bottom: 1.2rem; }
+.about-stats { display: flex; gap: 2rem; margin-top: 2rem; }
+.stat-item span { display: block; font-size: 2rem; font-weight: 700; color: var(--primary-color); }
+.img-frame { width: 100%; border-radius: 12px; box-shadow: 20px 20px 0px var(--primary-color); transition: transform 0.4s ease; }
+.about-image:hover .img-frame { transform: translate(-10px, -10px); }
+
+/* --- LOCALIZAÇÃO --- */
+
+/* LINHA DIVISORA ENTRE ENDEREÇO E HORÁRIOS */
+address {
+    font-style: normal; /* Remove o itálico padrão do navegador */
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 2rem; /* Espaço após o endereço */
+    padding-bottom: 2rem; /* Espaço antes da linha */
+    border-bottom: 1px solid #333; /* A linha sutil (mesma cor da borda do card) */
+    display: block; /* Garante que a borda ocupe a largura total */
+}
+
+/* Ajuste para o parágrafo de "Horário de Atendimento" não ficar colado na linha */
+.location-info p:nth-of-type(2) {
+    margin-top: 0;
+}
+
+.location-content {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    background-color: var(--card-bg);
+    padding: 6rem 3.5rem 3.5rem;
+    border-radius: 20px;
+    border: 1px solid #333;
+    align-items: center;
+}
+
+.location-title {
+    position: absolute;
+    top: 35px; /* Distância do topo */
+    left: 35px; /* Alinhado com o padding lateral */
+    margin: 0;
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+/* --- MAPA PREENCHIDO (ESTILO PREMIUM E IMPACTANTE) --- */
+
+.map-container {
+    position: relative;
+    height: 400px; /* Mantém a altura do quadro */
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    
+    /* MUDANÇA: Borda sutil para não brigar com a foto preenchida */
+    border: 1px solid #333; 
+    background-color: #000; /* Fundo para consistência */
+    
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.map-image {
+    width: 100%;
+    height: 100%;
+    
+    /* MUDANÇA CRUCIAL: cover preenche TODO o container */
+    object-fit: cover; 
+    
+    /* MUDANÇA: Alinha a imagem pelo centro, tentando manter a fachada visível */
+    object-position: center; 
+    
+    /* REMOVIDO: Padding interno (moldura) */
+    padding: 0; 
+    
+    /* Filtro para o visual premium (grayscale leve e contraste) */
+    filter: grayscale(20%) contrast(1.1); 
+    
+    /* Mantém o zoom suave ao passar o mouse */
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.5s ease; 
+}
+
+/* --- MANTÉM O OVERLAY E O TEXTO DO CANTO (Minimalista e Elegante) --- */
+.map-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Gradiente para proteger o texto dourado no canto inferior direito */
+    background: linear-gradient(
+        45deg,
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,0) 60%, /* Gradiente começa mais pro fim */
+        rgba(0,0,0,0.85) 100% /* Escurece bem o canto */
+    );
+    
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 20px 25px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.map-overlay span {
+    color: var(--primary-color);
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    
+    transform: translateY(10px);
+    transition: transform 0.4s ease;
+}
+
+/* --- EFEITO HOVER ATUALIZADO --- */
+.map-container:hover {
+    border-color: var(--primary-color); /* A moldura inteira "acende" em dourado */
+    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.2); /* Sombra dourada sutil */
+}
+
+.map-container:hover .map-image {
+    transform: scale(1.08); /* Mantém o zoom de 8% para impacto */
+    filter: grayscale(0%) contrast(1);
+}
+
+.map-container:hover .map-overlay {
+    opacity: 1;
+}
+
+.map-container:hover .map-overlay span {
+    transform: translateY(0);
+}
+/* --- SEÇÃO CONTATO PREMIUM --- */
+.contact-card {
+    position: relative;
+    background-color: var(--card-bg);
+    padding: 7rem 4rem 4rem;
+    border-radius: 20px;
+    border: 1px solid #333;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.contact-text h3 {
+    color: #fff;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.contact-text p {
+    color: #888;
+    margin-bottom: 2rem;
+}
+
+.contact-direct a {
+    display: block;
+    color: var(--primary-color);
+    text-decoration: none;
+    margin-bottom: 15px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.contact-direct a:hover {
+    color: #fff;
+    transform: translateX(5px);
+}
+
+/* ESTILO DOS INPUTS */
+.contact-form .input-group {
+    margin-bottom: 20px;
+}
+
+.contact-form input, 
+.contact-form textarea {
+    width: 100%;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: #fff;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.contact-form input:focus, 
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background: rgba(212, 175, 55, 0.05);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
+}
+
+/* BOTÃO ENVIAR */
+.btn-primary-full {
+    width: 100%;
+    padding: 18px;
+    background-color: var(--primary-color);
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-primary-full:hover {
+    background-color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* RESPONSIVIDADE CONTATO */
+@media (max-width: 900px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .contact-card {
+        padding: 6rem 2rem 3rem;
+    }
+}
+
+/* --- FOOTER PREMIUM CENTRALIZADO --- */
+.main-footer {
+    background-color: #0a0a0a;
+    padding: 60px 0 30px;
+    border-top: 1px solid #222;
+    text-align: center; /* Centraliza textos e elementos inline */
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza o conteúdo do flexbox horizontalmente */
+    justify-content: center;
+    gap: 30px;
+}
+
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Garante que a imagem e o texto da logo fiquem um sobre o outro */
+    text-align: center;
+}
+
+.logo-footer {
+    display: flex;
+    flex-direction: column; /* Deixa a Imagem em cima e o Texto embaixo */
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    margin-bottom: 15px;
+}
+
+/* Se preferir a imagem ao lado do texto (na mesma linha), 
+   basta remover o 'flex-direction: column' acima */
+
+.logo-img-footer {
+    height: 55px; /* Aumentei um pouco para dar mais presença no centro */
+    width: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.logo-text-footer {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.logo-text-footer .highlight {
+    color: var(--primary-color);
+}
+
+.footer-description {
+    color: #888;
+    max-width: 400px;
+    margin: 0 auto; /* Garante centralização se houver largura máxima */
+    font-size: 0.95rem;
+}
+
+/* ÍCONES SOCIAIS */
+.footer-social { display: flex; gap: 20px; justify-content: center; }
+.social-icon {
+    width: 50px; height: 50px; border-radius: 50%; border: 1px solid #333;
+    display: flex; justify-content: center; align-items: center; font-size: 1.5rem;
+    color: #fff; transition: 0.3s; text-decoration: none;
+}
+
+.social-icon.instagram:hover i {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.social-icon.facebook:hover i { color: #1877F2; }
+.social-icon.whatsapp:hover i { color: #25D366; }
+
+/* --- BOTÕES --- */
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background-color: var(--primary-color);
+    color: #000 !important;
+    padding: 1.2rem 2.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: 0.4s;
+}
+
+.btn-primary:hover { transform: scale(1.05) translateY(-3px); box-shadow: 0 8px 25px rgba(212,175,55,0.4); }
+
+/* --- WHATSAPP FLUTUANTE --- */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px; right: 30px;
+    background-color: #25D366;
+    color: #fff;
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    z-index: 2000;
+    animation: pulse-green 2s infinite;
+    text-decoration: none;
+}
+
+@keyframes pulse-green {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+/* --- RESPONSIVIDADE GERAL --- */
+@media (max-width: 768px) {
+    header { min-height: 70px; }
+    .logo-img { height: 40px; }
+    .logo-text { font-size: 1.1rem; }
+    nav ul { display: none; } /* Menu hamburguer deve ser implementado via JS */
+    .hero h2 { font-size: 2.2rem; }
+    .about-content, .location-content, .contact-grid { grid-template-columns: 1fr; text-align: center; }
+    .about-text h2 { text-align: center; }
+    .about-stats { justify-content: center; }
+}
+
+.dev-credits {
+    font-size: 0.75rem; /* Letras bem menores (aprox. 12px) */
+    color: #666;        /* Um cinza mais discreto para não brigar com o conteúdo principal */
+    margin-top: 10px;   /* Espaçamento sutil do topo */
+    letter-spacing: 0.5px; /* Melhora a leitura em fontes pequenas */
+    opacity: 0.8;       /* Deixa o visual mais suave e "premium" */
+}
+
+.dev-credits strong {
+    color: #888;        /* Deixa o nome da sua empresa levemente mais visível que o resto da frase */
+    font-weight: 600;
+}
+
+
