@@ -172,7 +172,7 @@
                         </ul>
                     </div>
                     <div class="map-container">
-                        <img src="img/barbearia.jpg" alt="Fachada UP Barber" class="map-image">
+                        <img src="img/barbearia.jpg" alt="Fachada UP Barber" class="img-frame">
                         <div class="map-overlay">
                             <span><i class="fas fa-search-location"></i> Ver no Street View</span>
                         </div>
@@ -249,5 +249,20 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+document.querySelector('.contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const tel = "5516997354455"; 
+    
+    const nome = document.querySelector('input[placeholder="Seu Nome"]').value;
+    const servico = document.querySelector('select').value;
+    const mensagem = document.querySelector('textarea').value;
+    
+    const texto = `Olá! Meu nome é ${nome}. Gostaria de agendar o serviço: ${servico}. %0A%0AObservação: ${mensagem}`;
+    
+    window.open(`https://wa.me/${tel}?text=${texto}`, '_blank');
+});
+</script>
 </body>
 </html>
