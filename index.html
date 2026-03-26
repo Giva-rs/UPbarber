@@ -250,21 +250,36 @@
 
     <script src="script.js"></script>
     <script>
+// 1. MÁSCARA DE TELEFONE EM TEMPO REAL
+const foneInput = document.querySelector('input[type="tel"]');
+
+foneInput.addEventListener('input', (e) => {
+    let x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
+    e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+});
+
+// 2. ENVIO PARA WHATSAPP COM VALIDAÇÃO
 document.querySelector('.contact-form').addEventListener('submit', function(e) {
     e.preventDefault();
     
-    const meuNumero = "5516997354455"; 
-    
+    // CONFIGURAÇÃO: Coloque o seu número real aqui (55 + DDD + Numero)
+    const meuWhatsApp = "5516999999999"; 
+
     const nome = document.querySelector('input[type="text"]').value;
+    const telefoneBruto = foneInput.value.replace(/\D/g, ""); // Remove máscara para validar
     const servico = document.querySelector('select').value;
     const mensagem = document.querySelector('textarea').value;
+
+    // VALIDAÇÃO DE SEGURANÇA
+    if (telefoneBruto.length < 10 || telefoneBruto.length > 11) {
+        alert("Por favor, insira um telefone válido com DDD (10 ou 11 dígitos).");
+        return;
+    }
+
+    // FORMATAÇÃO DA MENSAGEM
+    const texto = `*NOVO AGENDAMENTO - SITE*%0A%0A*Cliente:* ${nome}%0A*Telefone:* ${foneInput.value}%0A*Serviço:* ${servico}%0A*Mensagem:* ${mensagem}`;
     
-    const textoSaudacao = "Olá! Gostaria de realizar um agendamento através do site.";
-    const corpoMensagem = `*Cliente:* ${nome}%0A*Serviço:* ${servico}%0A*Observações:* ${mensagem}`;
-    
-    const urlFinal = `https://wa.me/${meuNumero}?text=${textoSaudacao}%0A%0A${corpoMensagem}`;
-    
-    window.open(urlFinal, '_blank');
+    window.open(`https://wa.me/${meuWhatsApp}?text=${texto}`, '_blank');
 });
 </script>
 </body>
