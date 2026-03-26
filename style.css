@@ -1,7 +1,10 @@
 /* --- CONFIGURAÇÕES GERAIS --- */
 html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 80px;
+    scroll-snap-type: y mandatory;
+}
+
+.section {
+    scroll-snap-align: start;
 }
 
 :root {
@@ -204,6 +207,7 @@ section h2 {
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(autofit, 4, 1fr); 
     gap: 20px;
     width: 100%;
 }
@@ -499,6 +503,30 @@ address {
     }
 }
 
+/* --- AJUSTE DE CENTRALIZAÇÃO FINAL --- */
+
+#localizacao, #contato {
+    /* Remova o padding exagerado de 100px que está nas regras gerais de section */
+    padding: 10px 0 !important; 
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* Ajuste para o menu não cobrir o título ao clicar */
+    scroll-margin-top: 80px; 
+}
+
+.location-content, .contact-card {
+    margin-top: 0 !important; /* Remove margens que empurram o card para baixo */
+}
+
+/* Garante que o Grid de Contato não quebre o alinhamento */
+.contact-grid {
+    align-items: start;
+    gap: 3rem;
+}
+
 /* --- FOOTER PREMIUM CENTRALIZADO --- */
 .main-footer {
     background-color: #0a0a0a;
@@ -570,7 +598,12 @@ address {
 
 .social-icon.instagram:hover i {
     background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text; 
+    background-clip: text;        
+    
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+
 }
 .social-icon.facebook:hover i { color: #1877F2; }
 .social-icon.whatsapp:hover i { color: #25D366; }
@@ -636,29 +669,4 @@ address {
 .dev-credits strong {
     color: #888;        /* Deixa o nome da sua empresa levemente mais visível que o resto da frase */
     font-weight: 600;
-}
-
-/* --- AJUSTE DE CENTRALIZAÇÃO FINAL --- */
-
-#localizacao, #contato {
-    padding: 80px 0 !important; /* Diminui o recuo para a seção subir */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.location-content, .contact-card {
-    margin-top: 0 !important; /* Remove margens que empurram o card para baixo */
-}
-
-/* Ajuste para o "pulo" do menu não esconder o título */
-#localizacao, #contato {
-    scroll-margin-top: 100px; 
-}
-
-/* Garante que o Grid de Contato não quebre o alinhamento */
-.contact-grid {
-    align-items: start;
-    gap: 3rem;
 }
