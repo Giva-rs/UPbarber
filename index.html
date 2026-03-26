@@ -249,36 +249,24 @@
 
     <script src="script.js"></script>
     <script>
-// 1. MÁSCARA DE TELEFONE EM TEMPO REAL
-const foneInput = document.querySelector('input[type="tel"]');
-
-foneInput.addEventListener('input', (e) => {
-    let x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
-    e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
-});
-
-// 2. ENVIO PARA WHATSAPP COM VALIDAÇÃO
 document.querySelector('.contact-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // CONFIGURAÇÃO: Coloque o seu número real aqui (55 + DDD + Numero)
-    const meuWhatsApp = "5516997354455"; 
+    e.preventDefault(); // Impede o recarregamento da página
 
-    const nome = document.querySelector('input[type="text"]').value;
-    const telefoneBruto = foneInput.value.replace(/\D/g, ""); // Remove máscara para validar
-    const servico = document.querySelector('select').value;
-    const mensagem = document.querySelector('textarea').value;
+    // Captura os valores dos campos
+    const nome = document.querySelector('input[placeholder="Seu Nome completo"]').value;
+    const email = document.querySelector('input[placeholder="Seu melhor E-mail"]').value;
+    const tel = document.querySelector('input[placeholder="(DDD) 00000-0000"]').value;
+    const msg = document.querySelector('textarea').value;
 
-    // VALIDAÇÃO DE SEGURANÇA
-    if (telefoneBruto.length < 10 || telefoneBruto.length > 11) {
-        alert("Por favor, insira um telefone válido com DDD (10 ou 11 dígitos).");
-        return;
-    }
+    // Número da barbearia (coloque o seu número real aqui)
+    const numeroWhatsApp = "5516997354455"; 
 
-    // FORMATAÇÃO DA MENSAGEM
-    const texto = `*NOVO AGENDAMENTO - SITE*%0A%0A*Cliente:* ${nome}%0A*Telefone:* ${foneInput.value}%0A*Serviço:* ${servico}%0A*Mensagem:* ${mensagem}`;
-    
-    window.open(`https://wa.me/${meuWhatsApp}?text=${texto}`, '_blank');
+    // Monta a mensagem
+    const texto = `Olá! Meu nome é *${nome}*.\n*Email:* ${email}\n*Tel:* ${tel}\n*Mensagem:* ${msg}`;
+    const link = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(texto)}`;
+
+    // Abre o WhatsApp em uma nova aba
+    window.open(link, '_blank');
 });
 </script>
 </body>
