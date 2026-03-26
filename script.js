@@ -11,6 +11,12 @@ document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
 document.getElementById('whatsappForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
+    const telefoneBruto = inputTelefone.value.replace(/\D/g, "");
+
+if (telefoneBruto.length < 10 || telefoneBruto.length > 11) {
+    alert("Por favor, insira um telefone válido com DDD (10 ou 11 dígitos).");
+    return; // Para a execução aqui
+}
     // Seleciona o campo de telefone
 const inputTelefone = document.getElementById('telefone');
 
