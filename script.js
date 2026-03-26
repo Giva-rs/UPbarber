@@ -11,6 +11,29 @@ document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
 document.getElementById('whatsappForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
+    // Seleciona o campo de telefone
+const inputTelefone = document.getElementById('telefone');
+
+inputTelefone.addEventListener('keyup', (e) => {
+    let valor = e.target.value;
+    
+    // Remove qualquer caractere que não seja número
+    valor = valor.replace(/\D/g, "");
+    
+    // Aplica a máscara (XX) XXXXX-XXXX ou (XX) XXXX-XXXX
+    if (valor.length > 0) {
+        valor = "(" + valor;
+    }
+    if (valor.length > 3) {
+        valor = valor.slice(0, 3) + ") " + valor.slice(3);
+    }
+    if (valor.length > 10) {
+        valor = valor.slice(0, 10) + "-" + valor.slice(10);
+    }
+    
+    e.target.value = valor.slice(0, 15); // Limita ao tamanho máximo
+});
+
     // Captura dos dados
     const nome = document.getElementById('nome').value;
     const email = document.getElementById('email').value;
