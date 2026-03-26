@@ -638,23 +638,27 @@ address {
     font-weight: 600;
 }
 
-/* AJUSTE PARA CENTRALIZAR ONDE ESTAMOS E CONTATO */
+/* --- AJUSTE DE CENTRALIZAÇÃO FINAL --- */
+
 #localizacao, #contato {
-    min-height: auto; /* Remove a altura forçada se existir */
+    padding: 80px 0 !important; /* Diminui o recuo para a seção subir */
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 60px 0; /* Espaçamento equilibrado */
 }
 
-/* Garante que o card de localização e contato ocupem bem o espaço */
 .location-content, .contact-card {
-    margin-top: 0 !important;
-    width: 100%;
-    max-width: 1100px;
+    margin-top: 0 !important; /* Remove margens que empurram o card para baixo */
 }
 
-/* Ajuste do scroll para estas seções pararem no lugar certo */
+/* Ajuste para o "pulo" do menu não esconder o título */
 #localizacao, #contato {
-    scroll-margin-top: 80px; 
+    scroll-margin-top: 100px; 
+}
+
+/* Garante que o Grid de Contato não quebre o alinhamento */
+.contact-grid {
+    align-items: start;
+    gap: 3rem;
 }
