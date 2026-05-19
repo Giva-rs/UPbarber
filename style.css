@@ -355,6 +355,7 @@ address {
 
 .map-overlay a {
     text-decoration: none;
+    color: inherit;
 }
     
     /* Gradiente para proteger o texto dourado no canto inferior direito */
