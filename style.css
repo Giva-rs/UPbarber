@@ -691,3 +691,12 @@ address {
     color: #888;        /* Deixa o nome da sua empresa levemente mais visível que o resto da frase */
     font-weight: 600;
 }
+
+.dev-credits a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.dev-credits a:hover {
+    color: var(--primary-color);
+}
