@@ -367,6 +367,9 @@ address {
 }
 
 .map-overlay span a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     text-decoration: none !important;
     color: #D4AF37 !important;
 }
